@@ -1,0 +1,32 @@
+<h1 style="color:brown">{{ title }}</h1>
+
+<ul *ngFor="let part of mobParts">
+  <li>id: {{ part.id }}</li>
+  <p [style.color]="part.color">
+    <li>Name:{{ part.name }}</li>
+  </p>
+  <p [ngStyle]="{ display: part.isOnline === true ? 'inline-block' : 'none' }">
+    <img
+      src="https://www.pngfind.com/pngs/m/269-2698936_green-dot-icon-png-green-online-icon-png.png"
+      width="16"
+    />
+  </p>
+
+  <span [ngSwitch]="part.country">
+    Country:
+    <img
+      *ngSwitchCase="'India'"
+      src="http://www.transparentpng.com/thumb/hindu-flag/india-circle-flag-grapplestudio-10.png"
+      width="'1'"
+    />
+
+    <img
+      *ngSwitchCase="'Australia'"
+      src="https://cdn4.iconfinder.com/data/icons/country-flag-1/744/Australia-512.png"
+      width="'1'"
+    />
+  </span>
+
+  <div *ngIf="part.inStock > 0; else ID">Stock details: {{ part.inStock }}</div>
+  <ng-template #ID> OUT OF STOCK </ng-template>
+</ul>
